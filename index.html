@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K S Engineering - Loading</title>
+    <link rel="stylesheet" href="css/main.css" />
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #4b0000 0%, #800000 100%); /* Maroon gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(1.05); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .redirect-container {
+            text-align: center;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+            max-width: 520px;
+            width: 90%;
+            animation: slideUp 1.2s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            min-height: 24px;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Glowing spinner */
+        .spinner {
+            width: 58px;
+            height: 58px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top: 5px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite, glow 1.5s ease-in-out infinite alternate;
+            margin: 0 auto 25px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 8px #ffffff; }
+            to { box-shadow: 0 0 20px #ffffff; }
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffdddd, #ffffff, #ffdddd);
+            width: 0%;
+            animation: progressAnim 3s ease-in-out forwards;
+        }
+
+        @keyframes progressAnim {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        .redirect-info {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="redirect-container">
+        <div class="logo">K S Engineering</div>
+        <div class="loading-text">Preparing your experience...</div>
+        <div class="spinner"></div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <div class="redirect-info">Redirecting to homepage...</div>
+    </div>
+
+    <script>
+        setTimeout(function () {
+            window.location.href = 'pages/homepage_industrial_manufacturing_showcase.html';
+        }, 3000);
+
+        const loadingTexts = [
+            'Preparing your experience...',
+            'Loading manufacturing modules...',
+            'Setting up interface...',
+            'Welcome to K S Engineering...'
+        ];
+
+        let index = 0;
+        const textEl = document.querySelector('.loading-text');
+
+        const interval = setInterval(() => {
+            index = (index + 1) % loadingTexts.length;
+            textEl.style.opacity = 0;
+
+            setTimeout(() => {
+                textEl.textContent = loadingTexts[index];
+                textEl.style.opacity = 1;
+            }, 250);
+        }, 700);
+
+        setTimeout(() => clearInterval(interval), 3000);
+    </script>
+</body>
+</html>
